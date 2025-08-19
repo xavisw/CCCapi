@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ccapi Financiamentos - Soluções Financeiras para Transporte</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- Adicionado menu de três pontinhos para parceiros -->
+                <div class="partner-menu">
+                    <button class="partner-menu-btn" id="partnerMenuBtn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="partner-dropdown" id="partnerDropdown">
+                        <button class="dropdown-item" id="loginBtn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login Parceiro
+                        </button>
+                        <button class="dropdown-item" id="registerBtn">
+                            <i class="fas fa-user-plus"></i>
+                            Criar Conta
+                        </button>
+                        <button class="dropdown-item" id="dashboardBtn">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Acessar Dashboard
+                        </button>
+                    </div>
+                </div>
+
+                <div class="nav-logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Ccapi Financiamentos</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#veiculos">Veículos</a></li>
+                    <li><a href="#contato">Localização</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Adicionados modais de login e cadastro -->
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login Parceiro</h2>
+                <button class="close-btn" id="closeLoginModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Senha</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+                <p class="auth-switch">
+                    Não tem conta? <a href="#" id="switchToRegister">Criar conta</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Criar Conta Parceiro</h2>
+                <button class="close-btn" id="closeRegisterModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Nome Completo</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerDocument">CPF ou CNPJ</label>
+                    <input type="text" id="registerDocument" placeholder="000.000.000-00 ou 00.000.000/0001-00" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPhone">Número de Telefone</label>
+                    <input type="tel" id="registerPhone" placeholder="(11) 99999-9999" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Senha</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Criar Conta</button>
+                <p class="auth-switch">
+                    Já tem conta? <a href="#" id="switchToLogin">Fazer login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Relaxa! Estamos cuidando<br>do <span class="highlight">crédito para você</span></h1>
+                <p></p>
+                <p class="hero-subtitle">Seja nosso parceiro e multiplique seus ganhos</p>
+                
+                <div class="hero-buttons">
+                    <button class="btn btn-partner" id="becomePartnerBtn">
+                        <i class="fas fa-handshake"></i>
+                        Torne-se Parceiro
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-phone"></i>
+                        Fale Conosco
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Ondas azuis reduzidas sem efeito parallax -->
+        <div class="hero-wave-small"></div>
+    </section>
+
+    <!-- Adicionada seção de estatísticas entre hero e about -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-boxes">
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>10Mil+</h3>
+                        <p>Veículos Financiados</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>99%</h3>
+                        <p>Taxa de Aprovação</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>5min</h3>
+                        <p>Atendimento rápido</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="sobre">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sobre a <span class="text-primary">Ccapi Financiamentos</span></h2>
+                <p>Conheça nossa história e compromisso com o sucesso dos nossos clientes</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-item">
+                        <h3>Nossa História</h3>
+                        <p>A Ccapi Financiamentos é uma empresa especializada em soluções financeiras. </p>
+                    </div>
+
+                    <div class="about-item">
+                        <h3>Missão</h3>
+                        <p>Oferecer acesso ao crédito sem burocracia, de forma rápida e personalizada.</p>
+                    </div>
+
+                    <div class="about-item">
+                        <h3>Nossos Valores</h3>
+                        <div class="values-grid">
+                            <div class="value-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Transparência</span>
+                            </div>
+                            <div class="value-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Ética</span>
+                            </div>
+                            <div class="value-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Responsabilidade</span>
+                            </div>
+                            <div class="value-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Excelência</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h4>Especialização</h4>
+                        <p>Focados exclusivamente no setor de transporte e logística</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Atendimento Personalizado</h4>
+                        <p>Cada cliente recebe uma solução sob medida para suas necessidades</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Experiência Comprovada</h4>
+                        <p>Anos de experiência no mercado de financiamentos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossos <span class="text-primary">Serviços</span></h2>
+                <p>Soluções financeiras completas para impulsionar seu negócio no setor de transporte</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Financiamento de Veículos</h3>
+                    <p>Financiamento especializado para caminhões, carretas, tratores e demais veículos pesados. Condições especiais e taxas competitivas.</p>
+                    
+                    <div class="service-benefits">
+                        <h4>Vantagens:</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Taxas competitivas</li>
+                            <li><i class="fas fa-check"></i> Aprovação rápida</li>
+                            <li><i class="fas fa-check"></i> Documentação simplificada</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Adicionado botão WhatsApp para solicitar consulta -->
+                    <button class="btn btn-outline whatsapp-service" data-service="Financiamento de Veículos">
+                        <i class="fab fa-whatsapp"></i>
+                        Solicitar Consulta
+                    </button>
+                </div>
+
+                <div class="service-card featured">
+                    <div class="service-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Capital de Giro</h3>
+                    <p>Empréstimos para capital de giro destinados ao crescimento e expansão do seu negócio no setor de transporte.</p>
+                    
+                    <div class="service-benefits">
+                        <h4>Vantagens:</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Liberação ágil</li>
+                            <li><i class="fas fa-check"></i> Sem burocracia</li>
+                            <li><i class="fas fa-check"></i> Pagamento flexível</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Adicionado botão WhatsApp para solicitar consulta -->
+                    <button class="btn btn-primary whatsapp-service" data-service="Capital de Giro">
+                        <i class="fab fa-whatsapp"></i>
+                        Solicitar Consulta
+                    </button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Empréstimo com Garantia</h3>
+                    <p>Crédito com garantia de veículo, oferecemos as melhores taxas do mercado para suas necessidades financeiras.</p>
+                    
+                    <div class="service-benefits">
+                        <h4>Vantagens:</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Menores taxas</li>
+                            <li><i class="fas fa-check"></i> Maior prazo</li>
+                            <li><i class="fas fa-check"></i> Crédito imediato</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Adicionado botão WhatsApp para solicitar consulta -->
+                    <button class="btn btn-outline whatsapp-service" data-service="Empréstimo com Garantia">
+                        <i class="fab fa-whatsapp"></i>
+                        Solicitar Consulta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Pronto para começar?</h2>
+                <p>Entre em contato conosco e descubra as melhores condições de financiamento para seu veículo ou negócio.</p>
+                <button class="btn btn-success">
+                    <i class="fab fa-whatsapp"></i>
+                    Fale Conosco no WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Section -->
+    <section class="vehicles" id="veiculos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Veículos <span class="text-primary">Pesados</span></h2>
+                <p>Financiamos uma ampla gama de veículos comerciais para atender às necessidades do seu negócio</p>
+            </div>
+
+            <div class="vehicles-grid">
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Volvo Truck">
+                        <div class="vehicle-badge">Caminhão Pesado</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>Volvo Truck - Modelo Rodoviário</h3>
+                        <p>Financiamento especial com as melhores condições do mercado</p>
+                    </div>
+                </div>
+
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Caminhão com Carreta">
+                        <div class="vehicle-badge">Transporte Rodoviário</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>Caminhão com Carreta</h3>
+                        <p>Financiamento especial com as melhores condições do mercado</p>
+                    </div>
+                </div>
+
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Caminhão Comercial Premium">
+                        <div class="vehicle-badge">Veículo Comercial</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>Caminhão Comercial Premium</h3>
+                        <p>Financiamento especial com as melhores condições do mercado</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vehicles-grid">
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Caminhão Especializado">
+                        <div class="vehicle-badge">Caminhão Especializado</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>Caminhão Especializado</h3>
+                        <p>Financiamento especial com as melhores condições do mercado</p>
+                    </div>
+                </div>
+
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Frota Empresarial">
+                        <div class="vehicle-badge">Frota Empresarial</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>Frota Empresarial</h3>
+                        <p>Financiamento especial com as melhores condições do mercado</p>
+                    </div>
+                </div>
+
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Transporte Especializado">
+                        <div class="vehicle-badge">Transporte Especializado</div>
+                    </div>
+                    <div class="vehicle-content">
+                        <h3>Transporte Especializado</h3>
+                        <p>Financiamento especial com as melhores condições do mercado</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard" id="dashboard" style="display: none;">
+        <!-- Dashboard com fundo azul escuro -->
+        <div class="dashboard-container dark-theme">
+            <div class="dashboard-header">
+                <div class="dashboard-nav">
+                    <div class="nav-logo">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Ccapi Financiamentos</span>
+                    </div>
+                    <div class="dashboard-user">
+                        <span id="welcomeUser">Bem-vindo, Parceiro</span>
+                        <button class="btn btn-outline btn-sm" id="logoutBtn">Sair</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="dashboard-sidebar">
+                    <ul class="sidebar-menu">
+                        <li class="menu-item active" data-section="overview">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Visão Geral</span>
+                        </li>
+                        <li class="menu-item" data-section="new-proposal">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Nova Proposta</span>
+                        </li>
+                        <li class="menu-item" data-section="proposals">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Minhas Propostas</span>
+                        </li>
+                        <!-- Removida seção de comissões -->
+                        <li class="menu-item" data-section="profile">
+                            <i class="fas fa-user"></i>
+                            <span>Perfil</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dashboard-main">
+                    <!-- Overview Section -->
+                    <div class="dashboard-section active" id="overview">
+                        <div class="section-header">
+                            <h2>Visão Geral</h2>
+                            <p>Acompanhe seu desempenho como parceiro</p>
+                        </div>
+
+                        <!-- Estatísticas reais do usuário -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 id="totalProposals">0</h3>
+                                    <p>Propostas Enviadas</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 id="pendingProposals">0</h3>
+                                    <p>Propostas Pendentes</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 id="approvedProposals">0</h3>
+                                    <p>Propostas Aprovadas</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 id="totalCommissions">R$ 0,00</h3>
+                                    <p>Comissões Totais</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="recent-activity">
+                            <h3>Atividade Recente</h3>
+                            <div class="activity-list" id="activityList">
+                                <div class="no-activity">
+                                    <p>Nenhuma atividade recente. Crie sua primeira proposta!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- New Proposal Section -->
+                    <div class="dashboard-section" id="new-proposal">
+                        <div class="section-header">
+                            <h2>Nova Proposta</h2>
+                            <p>Preencha os dados para criar uma nova proposta de financiamento</p>
+                        </div>
+
+                        <form class="proposal-form" id="proposalForm">
+                            <div class="form-section">
+                                <h3>Dados do Cliente</h3>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="clientName">Nome Completo</label>
+                                        <input type="text" id="clientName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="clientDocument">CPF/CNPJ</label>
+                                        <input type="text" id="clientDocument" placeholder="000.000.000-00" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="clientPhone">Telefone</label>
+                                        <input type="tel" id="clientPhone" placeholder="(11) 99999-9999" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="clientEmail">Email</label>
+                                        <input type="email" id="clientEmail" required>
+                                    </div>
+                                    <!-- Adicionado campo de profissão -->
+                                    <div class="form-group">
+                                        <label for="clientProfession">Profissão</label>
+                                        <input type="text" id="clientProfession" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="clientIncome">Renda Mensal</label>
+                                        <input type="text" id="clientIncome" placeholder="R$ 0,00" required>
+                                    </div>
+                                    <!-- Adicionado campo de CEP -->
+                                    <div class="form-group">
+                                        <label for="clientCep">CEP</label>
+                                        <input type="text" id="clientCep" placeholder="00000-000" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="clientAddress">Endereço Completo</label>
+                                        <input type="text" id="clientAddress" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Dados do Veículo</h3>
+                                <div class="form-grid">
+                                    <!-- Modificados tipos de veículos para Leve, Moto, Pesados -->
+                                    <div class="form-group">
+                                        <label for="vehicleType">Tipo de Veículo</label>
+                                        <select id="vehicleType" required>
+                                            <option value="">Selecione o tipo</option>
+                                            <option value="leve">Leve</option>
+                                            <option value="moto">Moto</option>
+                                            <option value="pesados">Pesados</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vehicleBrand">Marca</label>
+                                        <input type="text" id="vehicleBrand" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vehicleModel">Modelo</label>
+                                        <input type="text" id="vehicleModel" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vehicleYear">Ano</label>
+                                        <input type="number" id="vehicleYear" min="1990" max="2025" required>
+                                    </div>
+                                    <!-- Adicionado campo de placa do veículo -->
+                                    <div class="form-group">
+                                        <label for="vehiclePlate">Placa do Veículo</label>
+                                        <input type="text" id="vehiclePlate" placeholder="ABC-1234" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vehicleValue">Valor do Veículo</label>
+                                        <input type="text" id="vehicleValue" placeholder="R$ 0,00" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vehicleCondition">Condição</label>
+                                        <select id="vehicleCondition" required>
+                                            <option value="">Selecione</option>
+                                            <option value="novo">Novo</option>
+                                            <option value="seminovo">Seminovo</option>
+                                            <option value="usado">Usado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Dados do Financiamento</h3>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="financeValue">Valor a Financiar</label>
+                                        <input type="text" id="financeValue" placeholder="R$ 0,00" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="downPayment">Entrada</label>
+                                        <input type="text" id="downPayment" placeholder="R$ 0,00" required>
+                                    </div>
+                                    <!-- Mudado "Tipo de Financiamento" para "Tipo de Produto" -->
+                                    <div class="form-group">
+                                        <label for="financeType">Tipo de Produto</label>
+                                        <select id="financeType" required>
+                                            <option value="">Selecione</option>
+                                            <option value="financiamento">Financiamento</option>
+                                            <option value="refinanciamento">Refinanciamento</option>
+                                        </select>
+                                    </div>
+                                    <!-- Adicionado campo de especialista -->
+                                    <div class="form-group">
+                                        <label for="specialist">Especialista</label>
+                                        <select id="specialist" required>
+                                            <option value="">Selecione o especialista</option>
+                                            <option value="fabricio">Fabricio</option>
+                                            <option value="eder">Eder</option>
+                                            <option value="suzana">Suzana</option>
+                                            <option value="wandreyna">Wandreyna</option>
+                                            <option value="neto">Neto</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline">Salvar Rascunho</button>
+                                <button type="submit" class="btn btn-primary">Enviar Proposta</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Proposals Section -->
+                    <div class="dashboard-section" id="proposals">
+                        <div class="section-header">
+                            <h2>Minhas Propostas</h2>
+                            <p>Acompanhe o status de todas as suas propostas</p>
+                        </div>
+
+                        <!-- Tabela dinâmica de propostas -->
+                        <div class="proposals-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Cliente</th>
+                                        <th>Veículo</th>
+                                        <th>Valor</th>
+                                        <th>Status</th>
+                                        <th>Data</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="proposalsTableBody">
+                                    <tr class="no-proposals">
+                                        <td colspan="7">Nenhuma proposta encontrada. Crie sua primeira proposta!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Removida completamente a seção de comissões -->
+
+                    <!-- Profile Section -->
+                    <div class="dashboard-section" id="profile">
+                        <div class="section-header">
+                            <h2>Meu Perfil</h2>
+                            <p>Gerencie suas informações pessoais</p>
+                        </div>
+
+                        <form class="profile-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="profileName">Nome Completo</label>
+                                    <input type="text" id="profileName" value="Parceiro Exemplo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileEmail">Email</label>
+                                    <input type="email" id="profileEmail" value="parceiro@exemplo.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profilePhone">Telefone</label>
+                                    <input type="tel" id="profilePhone" value="(11) 99999-9999">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileDocument">CPF/CNPJ</label>
+                                    <input type="text" id="profileDocument" value="000.000.000-00" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <!-- Adicionada seção de localização com Google Maps -->
+    <section class="location" id="contato">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossa <span class="text-primary">Localização</span></h2>
+                <p>Visite nosso escritório ou entre em contato conosco</p>
+            </div>
+
+            <div class="location-content">
+                <div class="location-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Endereço</h4>
+                            <p>Av. Contorno Norte, 17 - Jereissati I<br>Maracanaú - CE, 61939-170</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Telefone</h4>
+                            <p>(85) 99999-9999</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Horário de Funcionamento</h4>
+                            <p>Segunda à Sexta: 8h às 18h<br>Sábado: 8h às 12h</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="location-map">
+                    <!-- Corrigido URL do Google Maps para o endereço real -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.234567890123!2d-38.6234567!3d-3.8765432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c0aa123456789ab%3A0x123456789abcdef0!2sAv.%20Contorno%20Norte%2C%2017%20-%20Jereissati%20I%2C%20Maracan%C3%A1u%20-%20CE%2C%2061939-170!5e0!3m2!1spt-BR!2sbr!4v1640995200000!5m2!1spt-BR!2sbr"
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Localização CCAPI Financiamentos">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Ccapi Financiamentos</span>
+                    </div>
+                    <p>Soluções financeiras especializadas para o setor de transporte e logística.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="#servicos">Financiamento de Veículos</a></li>
+                        <li><a href="#servicos">Capital de Giro</a></li>
+                        <li><a href="#servicos">Empréstimo com Garantia</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> (11) 9999-9999</li>
+                        <li><i class="fas fa-envelope"></i> contato@ccapi.com.br</li>
+                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ccapi Financiamentos. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5511999999999" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
